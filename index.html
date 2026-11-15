@@ -1,0 +1,835 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0191B4">
+
+    <title>Listeria | Prevención alimentaria</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<style>
+
+:root {
+    --turquesa: #35BBCA;
+    --azul: #0191B4;
+    --azul-oscuro: #123F78;
+    --amarillo: #F8D90F;
+    --verde: #D3DD18;
+    --naranja: #FE7A15;
+    --fondo: #F5FAFB;
+    --texto: #172D3D;
+    --blanco: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* NAVBAR */
+
+.header {
+    background: var(--blanco);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px #0000000c;
+}
+
+.navbar {
+    max-width: 1200px;
+    min-height: 70px;
+    padding: 12px 5%;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--azul);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--naranja);
+}
+
+/* HERO */
+
+.hero {
+    max-width: 1200px;
+    min-height: 480px;
+    padding: 70px 6%;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.tag {
+    display: inline-block;
+    background: #D3F3F5;
+    color: var(--azul-oscuro);
+    padding: 7px 14px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    line-height: 1.12;
+    margin: 22px 0;
+    color: var(--azul-oscuro);
+}
+
+.hero p {
+    max-width: 520px;
+    margin-bottom: 28px;
+}
+
+.hero-image {
+    flex: 0 1 350px;
+}
+
+.hero-image img {
+    width: 100%;
+    max-height: 330px;
+    object-fit: contain;
+}
+
+/* BOTONES */
+
+.btn {
+    display: inline-block;
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 13px 23px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover:not(:disabled) {
+    background: var(--azul-oscuro);
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* SECCIONES */
+
+.section {
+    max-width: 1200px;
+    padding: 75px 6%;
+    margin: auto;
+}
+
+.section-heading {
+    margin-bottom: 35px;
+}
+
+.section-heading span {
+    color: var(--azul);
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    color: var(--azul-oscuro);
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    line-height: 1.2;
+    margin: 10px 0;
+}
+
+/* INFORMACION */
+
+.info-grid,
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.info-card,
+.food-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #DCE9ED;
+    transition: transform 0.2s;
+}
+
+.info-card:hover,
+.food-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-card h3,
+.food-card h3 {
+    color: var(--azul);
+    margin-bottom: 10px;
+}
+
+.risks {
+    background: #EAF7F9;
+    border-radius: 20px;
+}
+
+.food-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+/* PREVENCION */
+
+.prevention-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.prevention-list article {
+    background: white;
+    border-radius: 13px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.prevention-list article span {
+    min-width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    background: var(--amarillo);
+    color: var(--azul-oscuro);
+    border-radius: 50%;
+    font-weight: 900;
+}
+
+/* QUIZ */
+
+.quiz-section {
+    text-align: center;
+}
+
+.quiz-container {
+    background: white;
+    border: 1px solid #DCE9ED;
+    border-radius: 18px;
+    max-width: 650px;
+    padding: 30px;
+    margin: auto;
+    text-align: left;
+    box-shadow: 0 5px 20px #00000008;
+}
+
+#question {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+}
+
+.answer-option {
+    width: 100%;
+    display: block;
+    text-align: left;
+    padding: 14px;
+    margin: 10px 0;
+    background: #F1F8FA;
+    border: 2px solid transparent;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.answer-option:hover {
+    border-color: var(--azul);
+}
+
+.answer-option.selected {
+    background: #DDF5F7;
+    border-color: var(--azul);
+}
+
+.answer-option:disabled {
+    cursor: default;
+}
+
+#feedback {
+    margin: 18px 0;
+    font-weight: bold;
+}
+
+#quiz-result {
+    text-align: center;
+}
+
+/* FOOTER */
+
+.footer {
+    background: var(--azul-oscuro);
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* TABLETS */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 12px 20px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-image {
+        max-width: 260px;
+    }
+
+    .info-grid,
+    .food-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .prevention-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* CELULARES */
+
+@media (max-width: 480px) {
+
+    html {
+        scroll-padding-top: 120px;
+    }
+
+    .navbar {
+        padding: 12px 15px;
+    }
+
+    .nav-links {
+        width: 100%;
+        gap: 8px 14px;
+    }
+
+    .nav-links a {
+        font-size: 0.78rem;
+    }
+
+    .hero {
+        padding: 45px 20px;
+        gap: 25px;
+    }
+
+    .hero h1 {
+        font-size: 2.1rem;
+    }
+
+    .hero-image {
+        max-width: 210px;
+    }
+
+    .section {
+        padding: 50px 18px;
+    }
+
+    .info-grid,
+    .food-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-card,
+    .food-card {
+        padding: 20px;
+    }
+
+    .food-card img {
+        height: 130px;
+    }
+
+    .quiz-container {
+        padding: 20px 15px;
+    }
+
+    .answer-option {
+        font-size: 0.9rem;
+    }
+
+    .prevention-list article {
+        padding: 17px;
+    }
+
+    .footer {
+        font-size: 0.85rem;
+    }
+
+}
+
+</style>
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="#inicio" class="logo">LISTERIA.</a>
+
+            <div class="nav-links">
+                <a href="#informacion">Información</a>
+                <a href="#riesgos">Riesgos</a>
+                <a href="#prevencion">Prevención</a>
+                <a href="#quiz">Quiz</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero" id="inicio">
+            <div class="hero-content">
+                <span class="tag">MANIPULACIÓN DE ALIMENTOS</span>
+
+                <h1>La seguridad alimentaria empieza con nosotros.</h1>
+
+                <p>
+                    Conocé qué es la listeriosis, cómo puede
+                    contaminar los alimentos y qué podemos
+                    hacer para prevenirla.
+                </p>
+
+                <a href="#informacion" class="btn">
+                    DESCUBRIR MÁS
+                </a>
+            </div>
+
+            <div class="hero-image">
+                <img src="assets/bacteria.png"
+                     alt="Ilustración de una bacteria">
+            </div>
+        </section>
+
+
+        <section class="section" id="informacion">
+
+            <div class="section-heading">
+                <span>01 / INFORMACIÓN</span>
+                <h2>¿Qué es la listeriosis?</h2>
+            </div>
+
+            <div class="info-grid">
+
+                <article class="info-card">
+                    <h3>¿Qué es?</h3>
+                    <p>
+                        Es una infección causada por la bacteria
+                        Listeria monocytogenes.
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <h3>¿Cómo se transmite?</h3>
+                    <p>
+                        Principalmente mediante el consumo
+                        de alimentos contaminados.
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <h3>¿Dónde puede aparecer?</h3>
+                    <p>
+                        En materias primas, instalaciones,
+                        utensilios y alimentos listos para consumir.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <section class="section risks" id="riesgos">
+
+            <div class="section-heading">
+                <span>02 / IDENTIFICACIÓN</span>
+                <h2>Alimentos y situaciones de riesgo</h2>
+            </div>
+
+            <div class="food-grid">
+
+                <article class="food-card">
+                    <img src="assets/queso.png" alt="Queso">
+                    <h3>Quesos blandos</h3>
+                    <p>Especialmente elaborados con leche no pasteurizada.</p>
+                </article>
+
+                <article class="food-card">
+                    <img src="assets/fiambre.png" alt="Fiambres">
+                    <h3>Fiambres</h3>
+                    <p>Alimentos refrigerados listos para consumir.</p>
+                </article>
+
+                <article class="food-card">
+                    <img src="assets/verduras.png" alt="Verduras">
+                    <h3>Vegetales</h3>
+                    <p>Productos crudos que no fueron correctamente lavados.</p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <section class="section prevention" id="prevencion">
+
+            <div class="section-heading">
+                <span>03 / PREVENCIÓN</span>
+                <h2>Buenas prácticas alimentarias</h2>
+            </div>
+
+            <div class="prevention-list">
+
+                <article>
+                    <span>01</span>
+                    <div>
+                        <h3>Higiene personal</h3>
+                        <p>Lavarse correctamente las manos.</p>
+                    </div>
+                </article>
+
+                <article>
+                    <span>02</span>
+                    <div>
+                        <h3>Separación de alimentos</h3>
+                        <p>Evitar el contacto entre alimentos crudos y cocidos.</p>
+                    </div>
+                </article>
+
+                <article>
+                    <span>03</span>
+                    <div>
+                        <h3>Control de temperatura</h3>
+                        <p>Respetar las condiciones de refrigeración y cocción.</p>
+                    </div>
+                </article>
+
+                <article>
+                    <span>04</span>
+                    <div>
+                        <h3>Limpieza y desinfección</h3>
+                        <p>Mantener utensilios y superficies higienizados.</p>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <section class="section quiz-section" id="quiz">
+
+            <div class="section-heading">
+                <span>04 / PARTICIPACIÓN</span>
+                <h2>¿Cuánto aprendiste?</h2>
+                <p>Respondé las preguntas y comprobá tus conocimientos.</p>
+            </div>
+
+            <div class="quiz-container">
+
+                <div id="quiz-content">
+
+                    <h3 id="question">Pregunta de ejemplo</h3>
+
+                    <div id="answers"></div>
+
+                    <p id="feedback"></p>
+
+                    <button id="next-btn" class="btn" disabled>
+                        SIGUIENTE
+                    </button>
+
+                </div>
+
+                <div id="quiz-result" hidden>
+                    <h3>¡Cuestionario terminado!</h3>
+                    <p id="score"></p>
+                    <button id="restart-btn" class="btn">
+                        VOLVER A INTENTAR
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+        <h3>LISTERIA.</h3>
+        <p>Información y prevención para una alimentación segura.</p>
+        <p>Proyecto educativo - Manipulación de Alimentos</p>
+    </footer>
+
+</body>
+<script>
+
+const preguntas = [
+    {
+        pregunta: "¿Qué bacteria causa la listeriosis?",
+        opciones: [
+            "Salmonella",
+            "Listeria monocytogenes",
+            "Escherichia coli"
+        ],
+        correcta: 1
+    },
+    {
+        pregunta: "¿La Listeria puede multiplicarse en la heladera?",
+        opciones: [
+            "Sí",
+            "No",
+            "Solamente en verano"
+        ],
+        correcta: 0
+    },
+    {
+        pregunta: "¿Cuál es una buena práctica de prevención?",
+        opciones: [
+            "Mezclar alimentos crudos y cocidos",
+            "Dejar los alimentos fuera de la heladera",
+            "Limpiar y desinfectar los utensilios"
+        ],
+        correcta: 2
+    },
+    {
+        pregunta: "¿Qué es la contaminación cruzada?",
+        opciones: [
+            "Transferir microorganismos entre alimentos",
+            "Congelar alimentos",
+            "Hervir agua"
+        ],
+        correcta: 0
+    },
+    {
+        pregunta: "¿Qué producto representa un riesgo?",
+        opciones: [
+            "Leche pasteurizada",
+            "Leche sin pasteurizar",
+            "Agua potable"
+        ],
+        correcta: 1
+    }
+];
+
+let preguntaActual = 0;
+let puntuacion = 0;
+let respondida = false;
+
+const preguntaElemento = document.querySelector("#question");
+const respuestasElemento = document.querySelector("#answers");
+const feedback = document.querySelector("#feedback");
+
+const siguienteBtn = document.querySelector("#next-btn");
+const quizContent = document.querySelector("#quiz-content");
+const resultado = document.querySelector("#quiz-result");
+
+function mostrarPregunta() {
+
+    respondida = false;
+
+    const pregunta = preguntas[preguntaActual];
+
+    preguntaElemento.textContent = pregunta.pregunta;
+
+    respuestasElemento.innerHTML = "";
+    feedback.textContent = "";
+
+    siguienteBtn.disabled = true;
+
+    pregunta.opciones.forEach((opcion, index) => {
+
+        const boton = document.createElement("button");
+
+        boton.textContent = opcion;
+        boton.classList.add("answer-option");
+
+        boton.addEventListener("click", () => {
+            seleccionarRespuesta(index, boton);
+        });
+
+        respuestasElemento.appendChild(boton);
+
+    });
+
+}
+
+function seleccionarRespuesta(index, boton) {
+
+    if (respondida) return;
+
+    respondida = true;
+
+    const correcta = preguntas[preguntaActual].correcta;
+
+    if (index === correcta) {
+
+        puntuacion++;
+
+        feedback.textContent = "¡Correcto! Muy bien.";
+
+    } else {
+
+        feedback.textContent =
+            "Incorrecto. La respuesta correcta es: " +
+            preguntas[preguntaActual].opciones[correcta];
+
+    }
+
+    document.querySelectorAll(".answer-option").forEach((opcion) => {
+        opcion.disabled = true;
+    });
+
+    boton.classList.add("selected");
+
+    siguienteBtn.disabled = false;
+
+    if (preguntaActual === preguntas.length - 1) {
+        siguienteBtn.textContent = "VER RESULTADO";
+    }
+
+}
+
+function siguientePregunta() {
+
+    preguntaActual++;
+
+    if (preguntaActual < preguntas.length) {
+
+        mostrarPregunta();
+
+    } else {
+
+        mostrarResultado();
+
+    }
+
+}
+
+function mostrarResultado() {
+
+    quizContent.hidden = true;
+    resultado.hidden = false;
+
+    document.querySelector("#score").textContent =
+        `Obtuviste ${puntuacion} de ${preguntas.length} respuestas correctas.`;
+
+}
+
+function reiniciarQuiz() {
+
+    preguntaActual = 0;
+    puntuacion = 0;
+
+    quizContent.hidden = false;
+    resultado.hidden = true;
+
+    siguienteBtn.textContent = "SIGUIENTE";
+
+    mostrarPregunta();
+
+}
+
+siguienteBtn.addEventListener("click", siguientePregunta);
+
+document.querySelector("#restart-btn").addEventListener(
+    "click",
+    reiniciarQuiz
+);
+
+mostrarPregunta();
+
+
+</script>
+</html>
