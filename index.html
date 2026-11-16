@@ -292,7 +292,7 @@ button { font: inherit; }
 
         <section class="section page-wrap" id="informacion">
             <div class="section-heading">
-                <span class="section-kicker">01 / INFORMACIÓN</span>
+               
                 <h2>Conocer para <span>prevenir.</span></h2>
                 <p>Entender cómo actúa la bacteria es el primer paso para reducir los riesgos.</p>
             </div>
@@ -328,7 +328,7 @@ button { font: inherit; }
 
         <section class="section page-wrap" id="riesgos">
             <div class="section-heading split-heading">
-                <div><span class="section-kicker">02 / IDENTIFICACIÓN</span><h2>Alimentos y <span>situaciones de riesgo.</span></h2></div>
+                <div><h2>Alimentos y <span>situaciones de riesgo.</span></h2></div>
                 <p>La contaminación puede ocurrir durante la producción, elaboración, conservación o manipulación.</p>
             </div>
             <div class="food-grid">
@@ -350,7 +350,7 @@ button { font: inherit; }
 
         <section class="section page-wrap" id="sintomas">
             <div class="section-heading">
-                <span class="section-kicker">03 / SALUD</span>
+               
                 <h2>Síntomas y <span>grupos de riesgo. ⚠️</span></h2>
             </div>
             <div class="symptoms-layout">
@@ -369,7 +369,7 @@ button { font: inherit; }
 
         <section class="section page-wrap" id="prevencion">
             <div class="section-heading">
-                <span class="section-kicker">04 / PREVENCIÓN</span>
+                
                 <h2>Buenas prácticas <span>alimentarias.</span></h2>
                 <p>Acciones que ayudan a mantener los alimentos seguros. y prevenir contaminacion</p>
             </div>
@@ -382,7 +382,7 @@ button { font: inherit; }
         </section>
 
         <section class="section quiz-section page-wrap" id="quiz">
-            <div class="quiz-intro"><span class="section-kicker">05 / PARTICIPACIÓN</span><h2>¿Cuánto sabés sobre <span>la Listeria?</span></h2><p>Respondé estas preguntas y comprobá cuánto aprendiste sobre la prevención.</p></div>
+            <div class="quiz-intro"><h2>¿Cuánto sabés sobre <span>la Listeria?</span></h2><p>Respondé estas preguntas y comprobá cuánto aprendiste sobre la prevención.</p></div>
             <div class="quiz-container">
                 <div class="quiz-topline"><span></span><span id="progress-label">PREGUNTA 1 / 5</span></div>
                 <div class="progress-track"><span id="progress-bar"></span></div>
@@ -428,7 +428,14 @@ button { font: inherit; }
         pregunta: "¿Qué producto puede representar un riesgo si no está pasteurizado?",
         opciones: ["Leche pasteurizada", "Leche cruda", "Agua potable"],
         correcta: 1
-    }
+    },
+		  {
+	pregunta: "Cuales de los siguientes grupos pertenecen al grupo de riesgo?",
+	opciones:["Mujeres Embarazadas","Recien nacidos","Personas de 65  años o menos","Todos los anteriores"],
+	correcta: 3
+	}
+
+		
 ];
 
 let preguntaActual = 0;
