@@ -1,704 +1,432 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0191B4">
-
+    <meta name="theme-color" content="#090d35">
+    <meta name="description" content="Información y prevención de la listeriosis para la manipulación segura de alimentos.">
     <title>Listeria | Prevención alimentaria</title>
-
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 
 <style>
-
-:root {
-    --turquesa: #35BBCA;
-    --azul: #0191B4;
-    --azul-oscuro: #123F78;
-    --amarillo: #F8D90F;
-    --verde: #D3DD18;
-    --naranja: #FE7A15;
-    --fondo: #F5FAFB;
-    --texto: #172D3D;
-    --blanco: #FFFFFF;
+    
+    :root {
+    --bg: #090d35;
+    --bg-deep: #070a29;
+    --panel: #101747;
+    --panel-light: #18245c;
+    --cyan: #35dce5;
+    --cyan-bright: #54f5ed;
+    --blue: #0191b4;
+    --yellow: #f8d90f;
+    --lime: #d3dd18;
+    --orange: #fe7a15;
+    --white: #f5fbff;
+    --muted: #aab8d8;
+    --line: rgba(76, 220, 235, .25);
+    --content: 1180px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 85px;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 95px; }
 body {
+    min-width: 320px;
+    overflow-x: hidden;
+    color: var(--white);
+    background:
+        radial-gradient(ellipse at 78% 7%, rgba(20, 104, 177, .25), transparent 28%),
+        radial-gradient(ellipse at 8% 43%, rgba(26, 69, 150, .17), transparent 32%),
+        linear-gradient(145deg, #0b103b 0%, var(--bg) 48%, #080b2d 100%);
     font-family: Arial, Helvetica, sans-serif;
-    background: var(--fondo);
-    color: var(--texto);
     line-height: 1.6;
 }
-
-img {
-    max-width: 100%;
-    display: block;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .16;
+    z-index: -1;
+    background-image: radial-gradient(circle, rgba(79, 226, 240, .8) 1px, transparent 1.5px);
+    background-size: 92px 92px;
+    mask-image: linear-gradient(to bottom, black, transparent 80%);
 }
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* NAVBAR */
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+.page-wrap { width: min(var(--content), calc(100% - 9vw)); margin-inline: auto; }
 
 .header {
-    background: var(--blanco);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 12px #0000000c;
+    background: rgba(8, 12, 47, .88);
+    border-bottom: 1px solid rgba(65, 218, 231, .13);
+    backdrop-filter: blur(16px);
 }
-
 .navbar {
-    max-width: 1200px;
-    min-height: 70px;
-    padding: 12px 5%;
+    width: min(var(--content), calc(100% - 9vw));
+    min-height: 78px;
     margin: auto;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--azul);
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    flex-wrap: wrap;
-}
-
-.nav-links a {
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-}
-
-.nav-links a:hover {
-    color: var(--naranja);
-}
-
-/* HERO */
-
-.hero {
-    max-width: 1200px;
-    min-height: 480px;
-    padding: 70px 6%;
-    margin: auto;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
+    gap: 28px;
+}
+.logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .08em; font-size: 1.12rem; }
+.logo-mark { width: 22px; height: 22px; display: inline-block; border-radius: 50%; background: var(--white); box-shadow: 0 0 18px rgba(53, 220, 229, .5); }
+.nav-links { display: flex; align-items: center; gap: clamp(18px, 3vw, 42px); }
+.nav-links a { color: #d5def2; font-size: .78rem; font-weight: 700; transition: color .2s; }
+.nav-links a:hover { color: var(--cyan-bright); }
+.nav-cta { min-width: 112px; padding: 10px 15px; border: 1px solid var(--cyan); color: var(--cyan-bright); display: flex; justify-content: space-between; gap: 14px; font-size: .68rem; letter-spacing: .12em; }
+
+.hero { min-height: 600px; display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 25px; position: relative; padding-block: 75px 95px; }
+.hero-content { position: relative; z-index: 2; max-width: 550px; }
+.eyebrow, .section-kicker { display: inline-flex; align-items: center; gap: 12px; color: var(--cyan); font-size: .68rem; letter-spacing: .25em; font-weight: 800; }
+.eyebrow-line { width: 25px; height: 2px; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+.hero h1 { max-width: 610px; margin: 27px 0 22px; font-size: clamp(2.7rem, 5.2vw, 4.8rem); line-height: 1.04; letter-spacing: -.055em; }
+.hero h1 span, .section-heading h2 span, .quiz-intro h2 span { color: var(--cyan-bright); }
+.hero-content > p { max-width: 470px; color: #bdc9e4; font-size: 1rem; margin-bottom: 32px; }
+.btn { min-height: 48px; min-width: 185px; padding: 12px 18px; display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; border: 1px solid var(--cyan); background: rgba(16, 32, 91, .55); color: var(--white); cursor: pointer; font-size: .68rem; font-weight: 800; letter-spacing: .1em; transition: background .25s, box-shadow .25s, transform .25s; }
+.btn span { color: var(--cyan-bright); font-size: 1rem; }
+.btn:hover:not(:disabled) { background: rgba(25, 128, 160, .35); box-shadow: 0 0 24px rgba(53, 220, 229, .2); transform: translateY(-2px); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.hero-meta { margin-top: 42px; color: #8294bf; font-size: .58rem; letter-spacing: .17em; display: flex; align-items: center; gap: 10px; }
+.pulse-dot { width: 7px; height: 7px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 12px var(--lime); }
+.hero-visual { min-height: 420px; position: relative; display: grid; place-items: center; isolation: isolate; }
+.hero-visual img { width: min(100%, 510px); max-height: 470px; object-fit: contain; position: relative; z-index: 2; filter: drop-shadow(0 0 28px rgba(37, 222, 231, .38)); border-radius: 50%; }
+.hero-glow { position: absolute; width: 62%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(24, 222, 228, .22), rgba(22, 91, 173, .08) 48%, transparent 72%); filter: blur(12px); }
+.orbit { position: absolute; border: 1px solid rgba(65, 218, 231, .2); border-radius: 50%; aspect-ratio: 1; }
+.orbit-one { width: 82%; transform: rotate(-25deg) scaleY(.72); }
+.orbit-two { width: 100%; transform: rotate(38deg) scaleY(.72); border-style: dashed; }
+.orbit-three { width: 68%; border-color: rgba(91, 127, 231, .25); }
+.visual-label { position: absolute; z-index: 3; color: var(--cyan); font-size: .57rem; letter-spacing: .18em; font-weight: 800; }
+.label-top { top: 13%; right: 1%; }
+.label-bottom { bottom: 8%; left: 8%; }
+.hero-index { position: absolute; right: 0; bottom: 42px; display: flex; align-items: center; gap: 17px; color: #7183b2; font-size: .7rem; }
+.hero-index strong { color: white; font-size: 1.4rem; border-bottom: 2px solid var(--cyan); padding: 0 3px 5px; }
+
+.section { padding-block: 88px; position: relative; }
+.section-heading { margin-bottom: 34px; }
+.section-heading h2, .quiz-intro h2 { margin-top: 12px; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; letter-spacing: -.04em; }
+.section-heading > p { max-width: 570px; color: var(--muted); margin-top: 14px; }
+.split-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; }
+.split-heading > p { max-width: 340px; padding-bottom: 5px; }
+.info-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
+.info-card { min-width: 0; padding: 20px 20px 25px; position: relative; background: linear-gradient(145deg, rgba(20, 31, 83, .92), rgba(12, 17, 57, .9)); border: 1px solid rgba(66, 202, 225, .16); box-shadow: 0 12px 35px rgba(0, 0, 0, .14); transition: transform .25s, border-color .25s, box-shadow .25s; }
+.info-card:hover { transform: translateY(-6px); border-color: rgba(67, 236, 236, .65); box-shadow: 0 15px 35px rgba(0, 0, 0, .22), 0 0 24px rgba(53, 220, 229, .08); }
+.featured-card { background: linear-gradient(145deg, #1a3478, #15245f); border-color: rgba(53, 220, 229, .5); transform: translateY(-12px); }
+.featured-card:hover { transform: translateY(-18px); }
+.card-image { height: 165px; display: grid; place-items: center; margin-bottom: 57px; background: radial-gradient(circle, rgba(23, 180, 206, .17), transparent 67%); }
+.card-image img { width: 100%; height: 100%; object-fit: contain; }
+.card-number { color: var(--cyan); font-size: .62rem; letter-spacing: .15em; }
+.info-card h3 { margin: 7px 0 9px; font-size: 1.2rem; }
+.info-card p { color: #aebbd8; font-size: .88rem; }
+.card-line { display: block; width: 35px; height: 2px; margin-top: 20px; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+
+#riesgos { padding-top: 100px; }
+.food-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.food-card { min-width: 0; background: rgba(14, 21, 68, .8); border: 1px solid rgba(72, 209, 227, .18); transition: transform .25s, border-color .25s; }
+.food-card:hover { transform: translateY(-5px); border-color: var(--cyan); }
+.food-card-highlight { background: linear-gradient(150deg, #1a3478, #11194d); border-color: rgba(53, 220, 229, .55); }
+.food-image { height: 265px; display: grid; place-items: center; padding: 18px; background: radial-gradient(circle, rgba(31, 165, 205, .18), transparent 70%); }
+.food-image img { height: 100%; width: 100%; object-fit: contain; }
+.food-copy { padding: 20px 22px 25px; }
+.food-copy > span { color: var(--cyan); font-size: .6rem; letter-spacing: .18em; font-weight: 800; }
+.food-copy h3 { margin: 8px 0; font-size: 1.2rem; }
+.food-copy p { color: var(--muted); font-size: .86rem; }
+.risk-note { display: flex; align-items: center; gap: 15px; padding: 18px 20px; margin-top: 25px; border: 1px solid rgba(248, 217, 15, .35); background: rgba(248, 217, 15, .06); color: #d9dfed; }
+.note-icon { flex: 0 0 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; color: var(--bg); background: var(--yellow); font-weight: 900; }
+.risk-note p { font-size: 25px; }
+.risk-note strong { color: var(--yellow); }
+
+.symptoms-layout { display: grid; grid-template-columns: 1.4fr .8fr; gap: 18px; }
+.symptoms-panel, .risk-panel { padding: 30px; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(20, 35, 91, .88), rgba(11, 17, 58, .92)); }
+.symptoms-panel h3, .risk-panel h3 { font-size: 1.25rem; margin-bottom: 20px; }
+.symptom-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.symptom-tags span { padding: 8px 13px; border: 1px solid rgba(53, 220, 229, .35); color: var(--cyan-bright); background: rgba(53, 220, 229, .06); font-size: .8rem; }
+.symptoms-panel p, .risk-panel p { color: var(--muted); font-size: .9rem; }
+.risk-symbol { width: 48px; height: 48px; display: grid; place-items: center; margin-bottom: 20px; color: var(--bg); background: var(--cyan); border-radius: 50%; font-size: 1.7rem; font-weight: 700; box-shadow: 0 0 22px rgba(53, 220, 229, .3); }
+
+.prevention-list { border-top: 1px solid var(--line); }
+.prevention-list article { min-height: 100px; display: grid; grid-template-columns: 60px 1fr 30px; align-items: center; gap: 18px; padding: 20px 16px; border-bottom: 1px solid var(--line); transition: background .2s, padding .2s; }
+.prevention-list article:hover { background: rgba(53, 220, 229, .045); padding-inline: 23px; }
+.prevention-list article > span { color: var(--cyan); font-size: 1.15rem; font-weight: 800; }
+.prevention-list h3 { font-size: 1.08rem; }
+.prevention-list p { color: var(--muted); font-size: .86rem; }
+.prevention-list b { color: var(--cyan); font-size: 1.2rem; }
+
+.quiz-section { display: grid; grid-template-columns: .85fr 1.15fr; gap: 55px; align-items: center; padding-block: 100px 115px; }
+.quiz-intro p { color: var(--muted); max-width: 380px; margin-top: 17px; }
+.quiz-container { padding: clamp(22px, 4vw, 36px); background: linear-gradient(145deg, rgba(23, 42, 105, .95), rgba(12, 19, 62, .97)); border: 1px solid rgba(53, 220, 229, .32); box-shadow: 0 20px 60px rgba(0, 0, 0, .2), 0 0 35px rgba(53, 220, 229, .06); }
+.quiz-topline { display: flex; justify-content: space-between; gap: 15px; color: var(--cyan); font-size: .6rem; letter-spacing: .12em; font-weight: 800; }
+.progress-track { height: 3px; margin: 15px 0 28px; background: rgba(255, 255, 255, .12); }
+.progress-track span { display: block; height: 100%; width: 20%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); transition: width .25s; }
+#question { margin-bottom: 20px; font-size: 1.25rem; line-height: 1.35; }
+.answer-option { width: 100%; display: block; text-align: left; margin: 9px 0; padding: 13px 15px; color: #dce7fa; background: rgba(7, 13, 48, .65); border: 1px solid rgba(120, 157, 211, .2); cursor: pointer; transition: border-color .2s, background .2s; }
+.answer-option:hover:not(:disabled), .answer-option.selected { border-color: var(--cyan); background: rgba(35, 148, 169, .18); }
+.answer-option:disabled { cursor: default; opacity: .85; }
+#feedback { min-height: 26px; margin: 15px 0; color: var(--cyan-bright); font-size: .88rem; font-weight: 700; }
+#quiz-result { text-align: center; padding: 18px 0 5px; }
+#quiz-result h3 { margin: 12px 0; font-size: 1.5rem; }
+#score { color: var(--muted); margin-bottom: 22px; }
+.result-mark { width: 58px; height: 58px; display: grid; place-items: center; margin: auto; border-radius: 50%; color: var(--bg); background: var(--cyan); font-size: 1.8rem; box-shadow: 0 0 25px rgba(53, 220, 229, .3); }
+
+.footer { border-top: 1px solid var(--line); background: rgba(5, 8, 35, .7); }
+.footer-main { min-height: 130px; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+.footer-main p { color: var(--muted); font-size: .85rem; }
+.back-top { color: var(--cyan); font-size: .65rem; font-weight: 800; letter-spacing: .13em; }
+.footer-bottom { min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid rgba(255, 255, 255, .08); color: #7181aa; font-size: .57rem; letter-spacing: .12em; }
+
+@media (max-width: 900px) {
+    .navbar { gap: 18px; }
+    .nav-links { gap: 17px; }
+    .hero { min-height: 540px; grid-template-columns: 1fr 1fr; }
+    .hero-visual { min-height: 350px; }
+    .info-grid, .food-grid { gap: 12px; }
+    .info-card { padding: 16px; }
+    .card-image { height: 165px; }
+    .quiz-section { gap: 30px; }
 }
 
-.hero-content {
-    flex: 1;
+@media (max-width: 680px) {
+    html { scroll-padding-top: 125px; }
+    .page-wrap, .navbar { width: min(100% - 36px, var(--content)); }
+    .navbar { min-height: 76px; flex-wrap: wrap; justify-content: space-between; gap: 8px 15px; padding-block: 12px; }
+    .logo { font-size: 1rem; }
+    .logo-mark { width: 18px; height: 18px; }
+    .nav-cta { min-width: auto; padding: 7px 10px; font-size: .58rem; }
+    .nav-links { order: 3; width: 100%; justify-content: space-between; gap: 8px; padding-top: 5px; }
+    .nav-links a { font-size: .69rem; }
+    .hero { min-height: auto; grid-template-columns: 1fr; text-align: center; padding-block: 65px 80px; gap: 12px; }
+    .hero-content { margin-inline: auto; }
+    .eyebrow { justify-content: center; font-size: .58rem; letter-spacing: .17em; }
+    .hero h1 { max-width: 540px; margin: 22px auto 17px; font-size: clamp(2.45rem, 10vw, 3.8rem); }
+    .hero-content > p { margin-inline: auto; font-size: .92rem; }
+    .hero-meta { justify-content: center; margin-top: 28px; font-size: .5rem; }
+    .hero-visual { width: min(100%, 410px); min-height: 290px; margin: 0 auto; }
+    .hero-visual img { width: 75%; max-height: 300px; }
+    .visual-label { font-size: .48rem; }
+    .hero-index { right: 4px; bottom: 20px; }
+    .section { padding-block: 65px; }
+    .section-heading { margin-bottom: 25px; }
+    .section-heading h2, .quiz-intro h2 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+    .info-grid, .food-grid { grid-template-columns: 1fr; gap: 15px; }
+    .info-card { display: grid; grid-template-columns: 105px 1fr; column-gap: 16px; align-items: center; padding: 15px; }
+    .card-image { grid-row: span 3; height: 105px; margin: 0; }
+    .card-number { align-self: end; }
+    .info-card h3 { margin: 3px 0; font-size: 1.05rem; }
+    .info-card p { font-size: .8rem; }
+    .card-line { display: none; }
+    .featured-card { transform: none; }
+    .featured-card:hover { transform: translateY(-4px); }
+    .split-heading { display: block; }
+    .split-heading > p { margin-top: 13px; }
+    .food-card { display: grid; grid-template-columns: 38% 1fr; }
+    .food-image { height: 100%; min-height: 160px; padding: 12px; }
+    .food-copy { align-self: center; padding: 18px 15px; }
+    .food-copy h3 { font-size: 1.05rem; }
+    .food-copy p { font-size: .78rem; }
+    .risk-note { align-items: flex-start; padding: 15px; }
+    .risk-note p { font-size: .78rem; }
+    .symptoms-layout { grid-template-columns: 1fr; }
+    .symptoms-panel, .risk-panel { padding: 23px; }
+    .prevention-list article { grid-template-columns: 38px 1fr 20px; gap: 12px; padding: 17px 8px; }
+    .prevention-list article:hover { padding-inline: 12px; }
+    .prevention-list h3 { font-size: .95rem; }
+    .prevention-list p { font-size: .78rem; }
+    .quiz-section { grid-template-columns: 1fr; gap: 25px; padding-block: 70px 80px; }
+    .quiz-intro { text-align: center; }
+    .quiz-intro p { margin-inline: auto; }
+    .quiz-topline { font-size: .52rem; }
+    #question { font-size: 1.08rem; }
+    .answer-option { font-size: .86rem; }
+    .footer-main { min-height: 150px; flex-wrap: wrap; justify-content: space-between; padding-block: 25px; }
+    .footer-main p { order: 3; width: 100%; }
+    .footer-bottom { padding-block: 15px; flex-direction: column; align-items: flex-start; gap: 7px; font-size: .5rem; }
 }
 
-.tag {
-    display: inline-block;
-    background: #D3F3F5;
-    color: var(--azul-oscuro);
-    padding: 7px 14px;
-    border-radius: 30px;
-    font-size: 0.8rem;
-    font-weight: bold;
+@media (max-width: 380px) {
+    .page-wrap, .navbar { width: calc(100% - 28px); }
+    .nav-links a { font-size: .63rem; }
+    .nav-cta { display: none; }
+    .hero h1 { font-size: 2.35rem; }
+    .hero-visual { min-height: 245px; }
+    .info-card { grid-template-columns: 85px 1fr; column-gap: 12px; }
+    .card-image { height: 85px; }
+    .food-card { grid-template-columns: 34% 1fr; }
+    .food-image { min-height: 145px; }
+    .quiz-container { padding: 19px 15px; }
 }
 
-.hero h1 {
-    font-size: clamp(2rem, 5vw, 3.8rem);
-    line-height: 1.12;
-    margin: 22px 0;
-    color: var(--azul-oscuro);
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
 
-.hero p {
-    max-width: 520px;
-    margin-bottom: 28px;
-}
+    </style>
 
-.hero-image {
-    flex: 0 1 350px;
-}
-
-.hero-image img {
-    width: 100%;
-    max-height: 330px;
-    object-fit: contain;
-}
-
-/* BOTONES */
-
-.btn {
-    display: inline-block;
-    background: var(--azul);
-    color: white;
-    border: none;
-    border-radius: 9px;
-    padding: 13px 23px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.btn:hover:not(:disabled) {
-    background: var(--azul-oscuro);
-    transform: translateY(-2px);
-}
-
-.btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-/* SECCIONES */
-
-.section {
-    max-width: 1200px;
-    padding: 75px 6%;
-    margin: auto;
-}
-
-.section-heading {
-    margin-bottom: 35px;
-}
-
-.section-heading span {
-    color: var(--azul);
-    font-size: 0.85rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.section-heading h2 {
-    color: var(--azul-oscuro);
-    font-size: clamp(1.7rem, 4vw, 2.6rem);
-    line-height: 1.2;
-    margin: 10px 0;
-}
-
-/* INFORMACION */
-
-.info-grid,
-.food-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
-}
-
-.info-card,
-.food-card {
-    background: white;
-    padding: 25px;
-    border-radius: 16px;
-    border: 1px solid #DCE9ED;
-    transition: transform 0.2s;
-}
-
-.info-card:hover,
-.food-card:hover {
-    transform: translateY(-5px);
-}
-
-.info-card h3,
-.food-card h3 {
-    color: var(--azul);
-    margin-bottom: 10px;
-}
-
-.risks {
-    background: #EAF7F9;
-    border-radius: 20px;
-}
-
-.food-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-    margin-bottom: 15px;
-}
-
-/* PREVENCION */
-
-.prevention-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-}
-
-.prevention-list article {
-    background: white;
-    border-radius: 13px;
-    padding: 22px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.prevention-list article span {
-    min-width: 45px;
-    height: 45px;
-    display: grid;
-    place-items: center;
-    background: var(--amarillo);
-    color: var(--azul-oscuro);
-    border-radius: 50%;
-    font-weight: 900;
-}
-
-/* QUIZ */
-
-.quiz-section {
-    text-align: center;
-}
-
-.quiz-container {
-    background: white;
-    border: 1px solid #DCE9ED;
-    border-radius: 18px;
-    max-width: 650px;
-    padding: 30px;
-    margin: auto;
-    text-align: left;
-    box-shadow: 0 5px 20px #00000008;
-}
-
-#question {
-    font-size: 1.25rem;
-    margin-bottom: 20px;
-}
-
-.answer-option {
-    width: 100%;
-    display: block;
-    text-align: left;
-    padding: 14px;
-    margin: 10px 0;
-    background: #F1F8FA;
-    border: 2px solid transparent;
-    border-radius: 9px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.answer-option:hover {
-    border-color: var(--azul);
-}
-
-.answer-option.selected {
-    background: #DDF5F7;
-    border-color: var(--azul);
-}
-
-.answer-option:disabled {
-    cursor: default;
-}
-
-#feedback {
-    margin: 18px 0;
-    font-weight: bold;
-}
-
-#quiz-result {
-    text-align: center;
-}
-
-/* FOOTER */
-
-.footer {
-    background: var(--azul-oscuro);
-    color: white;
-    text-align: center;
-    padding: 35px 20px;
-}
-
-.footer h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-/* TABLETS */
-
-@media (max-width: 768px) {
-
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .nav-links {
-        justify-content: center;
-        gap: 12px 20px;
-    }
-
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 50px;
-    }
-
-    .hero p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-image {
-        max-width: 260px;
-    }
-
-    .info-grid,
-    .food-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .prevention-list {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-/* CELULARES */
-
-@media (max-width: 480px) {
-
-    html {
-        scroll-padding-top: 120px;
-    }
-
-    .navbar {
-        padding: 12px 15px;
-    }
-
-    .nav-links {
-        width: 100%;
-        gap: 8px 14px;
-    }
-
-    .nav-links a {
-        font-size: 0.78rem;
-    }
-
-    .hero {
-        padding: 45px 20px;
-        gap: 25px;
-    }
-
-    .hero h1 {
-        font-size: 2.1rem;
-    }
-
-    .hero-image {
-        max-width: 210px;
-    }
-
-    .section {
-        padding: 50px 18px;
-    }
-
-    .info-grid,
-    .food-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .info-card,
-    .food-card {
-        padding: 20px;
-    }
-
-    .food-card img {
-        height: 130px;
-    }
-
-    .quiz-container {
-        padding: 20px 15px;
-    }
-
-    .answer-option {
-        font-size: 0.9rem;
-    }
-
-    .prevention-list article {
-        padding: 17px;
-    }
-
-    .footer {
-        font-size: 0.85rem;
-    }
-
-}
-
-</style>
 <body>
-
-    <header class="header">
-        <nav class="navbar">
-            <a href="#inicio" class="logo">LISTERIA.</a>
-
-            <div class="nav-links">
-                <a href="#informacion">Información</a>
-                <a href="#riesgos">Riesgos</a>
-                <a href="#prevencion">Prevención</a>
-                <a href="#quiz">Quiz</a>
-            </div>
-        </nav>
-    </header>
-
+  
     <main>
-
-        <section class="hero" id="inicio">
+        <section class="hero page-wrap" id="inicio">
             <div class="hero-content">
-                <span class="tag">MANIPULACIÓN DE ALIMENTOS</span>
-
-                <h1>La seguridad alimentaria empieza con nosotros.</h1>
-
-                <p>
-                    Conocé qué es la listeriosis, cómo puede
-                    contaminar los alimentos y qué podemos
-                    hacer para prevenirla.
-                </p>
-
-                <a href="#informacion" class="btn">
-                    DESCUBRIR MÁS
-                </a>
+                <span class="eyebrow"><span class="eyebrow-line"></span> LISTERIOSIS </span>
+                <h1>La seguridad alimentaria <span>empieza con nosotros.</span></h1>
+                <p>Conocé qué es la listeriosis, cómo puede contaminar los alimentos y qué podemos hacer para prevenirla.</p>
+                <a href="#informacion" class="btn">DESCUBRIR MÁS <span>→</span></a>
+                <div class="hero-meta"><span class="pulse-dot"></span> INFORMACIÓN · PREVENCIÓN · CONCIENCIA</div>
             </div>
-
-            <div class="hero-image">
-                <img src="assets/bacteria.png"
-                     alt="Ilustración de una bacteria">
+            <div class="hero-visual">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="orbit orbit-three"></div>
+                <div class="hero-glow"></div>
+                <img src="./img/listeriaFoto.jpeg" alt="Ilustración de Listeria monocytogenes">
+              <!--  <span class="visual-label label-top">01 / MICROORGANISMO</span>
+                <span class="visual-label label-bottom">PREVENIR ES PROTEGER</span>-->
             </div>
+          
         </section>
 
-
-        <section class="section" id="informacion">
-
+        <section class="section page-wrap" id="informacion">
             <div class="section-heading">
-                <span>01 / INFORMACIÓN</span>
-                <h2>¿Qué es la listeriosis?</h2>
+                <span class="section-kicker">01 / INFORMACIÓN</span>
+                <h2>Conocer para <span>prevenir.</span></h2>
+                <p>Entender cómo actúa la bacteria es el primer paso para reducir los riesgos.</p>
             </div>
-
             <div class="info-grid">
-
                 <article class="info-card">
+                    <div class="card-image"><img src="./img/listeriaFoto.jpeg" alt="Representación de bacterias"></div>
+                   
+		    <br></br>
                     <h3>¿Qué es?</h3>
-                    <p>
-                        Es una infección causada por la bacteria
-                        Listeria monocytogenes.
-                    </p>
+                    <p>Es una infección causada por la bacteria <em>Listeria monocytogenes</em>.</p>
+                    <span class="card-line"></span>
                 </article>
-
-                <article class="info-card">
+                <article class="info-card featured-card">
+                    <div class="card-image"><img src="./img/comer.jpg" alt="Alimentos que pueden estar contaminados"></div>
+                 
+		     <br></br>
                     <h3>¿Cómo se transmite?</h3>
-                    <p>
-                        Principalmente mediante el consumo
-                        de alimentos contaminados.
-                    </p>
+                    <p>Principalmente mediante el consumo de alimentos contaminados.</p>
+                    <span class="card-line"></span>
                 </article>
-
                 <article class="info-card">
+                    <div class="card-image"><img src="./img/uten.jpeg" alt="Entorno de producción y manipulación de alimentos"></div>
+                 
+		     <br></br>
                     <h3>¿Dónde puede aparecer?</h3>
-                    <p>
-                        En materias primas, instalaciones,
-                        utensilios y alimentos listos para consumir.
-                    </p>
+		  
+                    <p>En materias primas, instalaciones, utensilios y alimentos listos para consumir.</p>
+		    
+                    <span class="card-line"></span>
                 </article>
-
             </div>
-
         </section>
 
-
-        <section class="section risks" id="riesgos">
-
-            <div class="section-heading">
-                <span>02 / IDENTIFICACIÓN</span>
-                <h2>Alimentos y situaciones de riesgo</h2>
+        <section class="section page-wrap" id="riesgos">
+            <div class="section-heading split-heading">
+                <div><span class="section-kicker">02 / IDENTIFICACIÓN</span><h2>Alimentos y <span>situaciones de riesgo.</span></h2></div>
+                <p>La contaminación puede ocurrir durante la producción, elaboración, conservación o manipulación.</p>
             </div>
-
             <div class="food-grid">
-
                 <article class="food-card">
-                    <img src="assets/queso.png" alt="Queso">
-                    <h3>Quesos blandos</h3>
-                    <p>Especialmente elaborados con leche no pasteurizada.</p>
+                    <div class="food-image"><img src="./img/cremoso.jpg" alt="Quesos blandos"></div>
+                    <div class="food-copy"><span>RIESGO 01</span><h3>Quesos blandos</h3><p>Especialmente los elaborados con leche no pasteurizada.</p></div>
                 </article>
-
+                <article class="food-card food-card-highlight">
+                    <div class="food-image"><img src="./img/fiambre.jpeg" alt="Fiambres refrigerados"></div>
+                    <div class="food-copy"><span>RIESGO 02</span><h3>Fiambres</h3><p>Alimentos refrigerados listos para consumir que requieren manipulación y conservación adecuadas.</p></div>
+                </article>
                 <article class="food-card">
-                    <img src="assets/fiambre.png" alt="Fiambres">
-                    <h3>Fiambres</h3>
-                    <p>Alimentos refrigerados listos para consumir.</p>
+                    <div class="food-image"><img src="./img/vege.jpg" alt="Vegetales frescos"></div>
+                    <div class="food-copy"><span>RIESGO 03</span><h3>Vegetales</h3><p>Productos que deben lavarse y manipularse correctamente para evitar contaminaciones.</p></div>
                 </article>
-
-                <article class="food-card">
-                    <img src="assets/verduras.png" alt="Verduras">
-                    <h3>Vegetales</h3>
-                    <p>Productos crudos que no fueron correctamente lavados.</p>
-                </article>
-
             </div>
-
+            <div class="risk-note"><span class="note-icon">!</span><p><strong>Importante:</strong> la refrigeración no elimina la bacteria. La Listeria puede multiplicarse incluso a temperaturas de heladera.</p></div>
         </section>
 
-
-        <section class="section prevention" id="prevencion">
-
+        <section class="section page-wrap" id="sintomas">
             <div class="section-heading">
-                <span>03 / PREVENCIÓN</span>
-                <h2>Buenas prácticas alimentarias</h2>
+                <span class="section-kicker">03 / SALUD</span>
+                <h2>Síntomas y <span>grupos de riesgo. ⚠️</span></h2>
             </div>
+            <div class="symptoms-layout">
+                <div class="symptoms-panel">
+                    <h3>Señales que debemos conocer</h3>
+                    <div class="symptom-tags"><span>Fiebre</span><span>Dolores musculares</span><span>Náuseas</span><span>Diarrea</span></div>
+                    <p>La enfermedad puede ser más grave en personas embarazadas, recién nacidos, adultos mayores y personas con el sistema inmunitario debilitado.</p>
+                </div>
+                <div class="risk-panel">
+                    <div class="risk-symbol">+</div>
+                    <h3>Mayor atención</h3>
+                    <p>La prevención en la manipulación y elección de alimentos es especialmente importante para proteger a los grupos más vulnerables.</p>
+                </div>
+            </div>
+        </section>
 
+        <section class="section page-wrap" id="prevencion">
+            <div class="section-heading">
+                <span class="section-kicker">04 / PREVENCIÓN</span>
+                <h2>Buenas prácticas <span>alimentarias.</span></h2>
+                <p>Acciones que ayudan a mantener los alimentos seguros. y prevenir contaminacion</p>
+            </div>
             <div class="prevention-list">
-
-                <article>
-                    <span>01</span>
-                    <div>
-                        <h3>Higiene personal</h3>
-                        <p>Lavarse correctamente las manos.</p>
-                    </div>
-                </article>
-
-                <article>
-                    <span>02</span>
-                    <div>
-                        <h3>Separación de alimentos</h3>
-                        <p>Evitar el contacto entre alimentos crudos y cocidos.</p>
-                    </div>
-                </article>
-
-                <article>
-                    <span>03</span>
-                    <div>
-                        <h3>Control de temperatura</h3>
-                        <p>Respetar las condiciones de refrigeración y cocción.</p>
-                    </div>
-                </article>
-
-                <article>
-                    <span>04</span>
-                    <div>
-                        <h3>Limpieza y desinfección</h3>
-                        <p>Mantener utensilios y superficies higienizados.</p>
-                    </div>
-                </article>
-
+                <article><span>01</span><div><h3>Higiene personal</h3><p>Lavarse correctamente las manos antes de manipular alimentos.</p></div><b>↗</b></article>
+                <article><span>02</span><div><h3>Separación de alimentos</h3><p>Evitar el contacto entre alimentos crudos y cocidos o listos para consumir.</p></div><b>↗</b></article>
+                <article><span>03</span><div><h3>Control de temperatura</h3><p>Respetar las temperaturas de conservación y cocinar adecuadamente los alimentos.</p></div><b>↗</b></article>
+                <article><span>04</span><div><h3>Limpieza y desinfección</h3><p>Mantener utensilios, superficies y equipos limpios y desinfectados.</p></div><b>↗</b></article>
             </div>
-
         </section>
 
-
-        <section class="section quiz-section" id="quiz">
-
-            <div class="section-heading">
-                <span>04 / PARTICIPACIÓN</span>
-                <h2>¿Cuánto aprendiste?</h2>
-                <p>Respondé las preguntas y comprobá tus conocimientos.</p>
-            </div>
-
+        <section class="section quiz-section page-wrap" id="quiz">
+            <div class="quiz-intro"><span class="section-kicker">05 / PARTICIPACIÓN</span><h2>¿Cuánto sabés sobre <span>la Listeria?</span></h2><p>Respondé estas preguntas y comprobá cuánto aprendiste sobre la prevención.</p></div>
             <div class="quiz-container">
-
+                <div class="quiz-topline"><span></span><span id="progress-label">PREGUNTA 1 / 5</span></div>
+                <div class="progress-track"><span id="progress-bar"></span></div>
                 <div id="quiz-content">
-
                     <h3 id="question">Pregunta de ejemplo</h3>
-
                     <div id="answers"></div>
-
-                    <p id="feedback"></p>
-
-                    <button id="next-btn" class="btn" disabled>
-                        SIGUIENTE
-                    </button>
-
+                    <p id="feedback" aria-live="polite"></p>
+                    <button id="next-btn" class="btn" disabled>SIGUIENTE <span>→</span></button>
                 </div>
-
                 <div id="quiz-result" hidden>
-                    <h3>¡Cuestionario terminado!</h3>
+                    <div class="result-mark">✓</div>
+                    <h3>¡Desafío terminado!</h3>
                     <p id="score"></p>
-                    <button id="restart-btn" class="btn">
-                        VOLVER A INTENTAR
-                    </button>
+                    <button id="restart-btn" class="btn">VOLVER A INTENTAR <span>↻</span></button>
                 </div>
-
             </div>
-
         </section>
-
     </main>
-
-
-    <footer class="footer">
-        <h3>LISTERIA.</h3>
-        <p>Información y prevención para una alimentación segura.</p>
-        <p>Proyecto educativo - Manipulación de Alimentos</p>
-    </footer>
-
-</body>
-<script>
-
-const preguntas = [
+    <script>
+	
+	const preguntas = [
     {
         pregunta: "¿Qué bacteria causa la listeriosis?",
-        opciones: [
-            "Salmonella",
-            "Listeria monocytogenes",
-            "Escherichia coli"
-        ],
+        opciones: ["Salmonella", "Listeria monocytogenes", "Escherichia coli"],
         correcta: 1
     },
     {
         pregunta: "¿La Listeria puede multiplicarse en la heladera?",
-        opciones: [
-            "Sí",
-            "No",
-            "Solamente en verano"
-        ],
+        opciones: ["Sí", "No", "Solamente en verano"],
         correcta: 0
     },
     {
         pregunta: "¿Cuál es una buena práctica de prevención?",
-        opciones: [
-            "Mezclar alimentos crudos y cocidos",
-            "Dejar los alimentos fuera de la heladera",
-            "Limpiar y desinfectar los utensilios"
-        ],
+        opciones: ["Mezclar alimentos crudos y cocidos", "Dejar los alimentos fuera de la heladera", "Limpiar y desinfectar los utensilios"],
         correcta: 2
     },
     {
         pregunta: "¿Qué es la contaminación cruzada?",
-        opciones: [
-            "Transferir microorganismos entre alimentos",
-            "Congelar alimentos",
-            "Hervir agua"
-        ],
+        opciones: ["Transferir microorganismos entre alimentos", "Congelar alimentos", "Hervir agua"],
         correcta: 0
     },
     {
-        pregunta: "¿Qué producto representa un riesgo?",
-        opciones: [
-            "Leche pasteurizada",
-            "Leche sin pasteurizar",
-            "Agua potable"
-        ],
+        pregunta: "¿Qué producto puede representar un riesgo si no está pasteurizado?",
+        opciones: ["Leche pasteurizada", "Leche cruda", "Agua potable"],
         correcta: 1
     }
 ];
@@ -710,126 +438,90 @@ let respondida = false;
 const preguntaElemento = document.querySelector("#question");
 const respuestasElemento = document.querySelector("#answers");
 const feedback = document.querySelector("#feedback");
-
 const siguienteBtn = document.querySelector("#next-btn");
 const quizContent = document.querySelector("#quiz-content");
 const resultado = document.querySelector("#quiz-result");
+const progressBar = document.querySelector("#progress-bar");
+const progressLabel = document.querySelector("#progress-label");
 
 function mostrarPregunta() {
-
     respondida = false;
-
     const pregunta = preguntas[preguntaActual];
 
     preguntaElemento.textContent = pregunta.pregunta;
-
     respuestasElemento.innerHTML = "";
     feedback.textContent = "";
-
     siguienteBtn.disabled = true;
+    siguienteBtn.innerHTML = 'SIGUIENTE <span>→</span>';
+    progressBar.style.width = `${((preguntaActual + 1) / preguntas.length) * 100}%`;
+    progressLabel.textContent = `PREGUNTA ${preguntaActual + 1} / ${preguntas.length}`;
 
     pregunta.opciones.forEach((opcion, index) => {
-
         const boton = document.createElement("button");
-
+        boton.type = "button";
         boton.textContent = opcion;
         boton.classList.add("answer-option");
-
-        boton.addEventListener("click", () => {
-            seleccionarRespuesta(index, boton);
-        });
-
+        boton.addEventListener("click", () => seleccionarRespuesta(index, boton));
         respuestasElemento.appendChild(boton);
-
     });
-
 }
 
 function seleccionarRespuesta(index, boton) {
-
     if (respondida) return;
-
     respondida = true;
 
     const correcta = preguntas[preguntaActual].correcta;
+    const botones = document.querySelectorAll(".answer-option");
 
-    if (index === correcta) {
-
-        puntuacion++;
-
-        feedback.textContent = "¡Correcto! Muy bien.";
-
-    } else {
-
-        feedback.textContent =
-            "Incorrecto. La respuesta correcta es: " +
-            preguntas[preguntaActual].opciones[correcta];
-
-    }
-
-    document.querySelectorAll(".answer-option").forEach((opcion) => {
+    botones.forEach((opcion, i) => {
         opcion.disabled = true;
+        if (i === correcta) opcion.classList.add("selected");
     });
 
-    boton.classList.add("selected");
-
-    siguienteBtn.disabled = false;
-
-    if (preguntaActual === preguntas.length - 1) {
-        siguienteBtn.textContent = "VER RESULTADO";
+    if (index === correcta) {
+        puntuacion++;
+        feedback.textContent = "¡Correcto! Muy bien.";
+    } else {
+        feedback.textContent = `No es correcto. La respuesta correcta es: ${preguntas[preguntaActual].opciones[correcta]}.`;
+        boton.classList.add("selected");
     }
 
+    siguienteBtn.disabled = false;
+    if (preguntaActual === preguntas.length - 1) {
+        siguienteBtn.innerHTML = 'VER RESULTADO <span>→</span>';
+    }
 }
 
 function siguientePregunta() {
-
     preguntaActual++;
-
     if (preguntaActual < preguntas.length) {
-
         mostrarPregunta();
-
     } else {
-
         mostrarResultado();
-
     }
-
 }
 
 function mostrarResultado() {
-
     quizContent.hidden = true;
     resultado.hidden = false;
-
-    document.querySelector("#score").textContent =
-        `Obtuviste ${puntuacion} de ${preguntas.length} respuestas correctas.`;
-
+    progressBar.style.width = "100%";
+    progressLabel.textContent = "FINALIZADO";
+    document.querySelector("#score").textContent = `Obtuviste ${puntuacion} de ${preguntas.length} respuestas correctas.`;
 }
 
 function reiniciarQuiz() {
-
     preguntaActual = 0;
     puntuacion = 0;
-
     quizContent.hidden = false;
     resultado.hidden = true;
-
-    siguienteBtn.textContent = "SIGUIENTE";
-
     mostrarPregunta();
-
 }
 
 siguienteBtn.addEventListener("click", siguientePregunta);
-
-document.querySelector("#restart-btn").addEventListener(
-    "click",
-    reiniciarQuiz
-);
-
+document.querySelector("#restart-btn").addEventListener("click", reiniciarQuiz);
 mostrarPregunta();
 
-
-</script>
+	</script>
+    
+</body>
 </html>
